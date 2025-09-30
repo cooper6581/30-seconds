@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvjuvew34uagu"]
+
+[ext_resource type="Script" uid="uid://bcxf6e3xh0byn" path="res://player.gd" id="1_f50pn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_186t8"]
+size = Vector2(61, 61)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_f50pn")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33.5, 30.5)
+shape = SubResource("RectangleShape2D_186t8")
+
+[node name="GlowPolygon" type="Polygon2D" parent="."]
+color = Color(0, 1, 1, 0.8)
+polygon = PackedVector2Array(32, -5, 70, 32, 32, 69, -6, 32)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(32, 5, 55, 32, 32, 59, 9, 32)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

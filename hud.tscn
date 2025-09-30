@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://vbqwpm0w1ibf"]
+
+[ext_resource type="Script" uid="uid://f7uw1tiweq83" path="res://hud.gd" id="1_37p78"]
+
+[sub_resource type="GDScript" id="GDScript_64ctp"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func update_time(time: float) -> void:
+	var display_string = \"Survival Time: %010.3f\" % time
+	text = display_string
+"
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_37p78")
+
+[node name="SurvivalTimeLabel" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_64ctp")
+
+[node name="MessageLabel" type="Label" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 47
+horizontal_alignment = 1
+vertical_alignment = 1

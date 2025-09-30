@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqtm6rt25m8mf"]
+
+[ext_resource type="Script" uid="uid://bdl1vllgoemei" path="res://mob.gd" id="1_dy6sc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfba5"]
+size = Vector2(32, 32)
+
+[node name="Mob" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_dy6sc")
+
+[node name="GlowPolygon" type="Polygon2D" parent="."]
+color = Color(1, 0, 0.5, 0.7)
+polygon = PackedVector2Array(16, -6, 38, 30, -6, 30)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 0.5, 1)
+polygon = PackedVector2Array(16, 2, 30, 26, 2, 26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_jfba5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

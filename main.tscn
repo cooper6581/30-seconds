@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://c40wbeyxbqbyp"]
+
+[ext_resource type="Script" uid="uid://tapqu787kyxr" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cqtm6rt25m8mf" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cvjuvew34uagu" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" path="res://unified_power_up.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://vbqwpm0w1ibf" path="res://hud.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" path="res://effects_camera.tscn" id="6_d1cam"]
+[ext_resource type="AudioStream" uid="uid://bel37cyhu8ro" path="res://scream.wav" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://uatwgdnaw86c" path="res://power_up_2.wav" id="8_5vw27"]
+[ext_resource type="AudioStream" uid="uid://cp0pkfnmja0p0" path="res://101_-_Dune_-_DOS_-_Arrakis.ogg" id="9_kek77"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0xm2m")
+mob_scene = ExtResource("2_1bvp3")
+unified_power_up_scene = ExtResource("3_lquwl")
+
+[node name="EffectsCamera" parent="." instance=ExtResource("6_d1cam")]
+position = Vector2(576, 324)
+
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 0.305
+autostart = true
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="HUD" parent="." instance=ExtResource("5_lquwl")]
+
+[node name="DeathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_272bh")
+
+[node name="PowerAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5vw27")
+
+[node name="BgMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_kek77")
+autoplay = true
+
+[connection signal="clear_mobs_requested" from="Player" to="." method="_on_player_clear_mobs_requested"]
+[connection signal="got_power_up" from="Player" to="." method="_on_player_got_power_up"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

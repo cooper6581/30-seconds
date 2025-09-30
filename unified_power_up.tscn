@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bunified_power_up"]
+
+[ext_resource type="Script" path="res://unified_power_up.gd" id="1_unified"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unified"]
+size = Vector2(16, 16)
+
+[node name="UnifiedPowerUp" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_unified")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_unified")
+
+[node name="GlowPolygon" type="Polygon2D" parent="."]
+color = Color(0, 1, 0.25, 0.8)
+polygon = PackedVector2Array(8, -4, 16, -1, 20, 8, 16, 17, 8, 20, 0, 17, -4, 8, 0, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 1, 0.25, 1)
+polygon = PackedVector2Array(8, 1, 12, 3, 15, 8, 12, 13, 8, 15, 4, 13, 1, 8, 4, 3)
